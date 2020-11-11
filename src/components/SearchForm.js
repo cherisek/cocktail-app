@@ -9,12 +9,12 @@ export default function SearchForm() {
     searchValue.current.focus()
   }, [])
 
-  function searchCocktail() {
+  const searchCocktail = () => {
     setSearchTerm(searchValue.current.value)
   }
 
-  function handleSubmit(e) {
-    e.preventDefault()
+  const handleSubmit = (e) => {
+    e.preventDefault();
   }
 
   return (
