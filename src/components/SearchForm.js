@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGlobalContext } from '../context';
 
-export default function SearchForm() {
+const SearchForm = () => {
   const { setSearchTerm } = useGlobalContext();
   const searchValue = React.useRef('');
 
@@ -33,4 +33,6 @@ export default function SearchForm() {
       </form>
     </section>
   )
-}
+} 
+
+export default SearchForm; 

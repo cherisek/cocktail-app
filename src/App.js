@@ -10,7 +10,7 @@ import Error from './pages/Error';
 //import componenets
 import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <Navbar />

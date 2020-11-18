@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Loading from '../components/Loading';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-export default function SingleCocktail() {
-  const { id } = useParams()
-  const [loading, setLoading] = React.useState(false)
-  const [cocktail, setCocktail] = React.useState(null)
+const SingleCocktail = () => {
+  const { id } = useParams();
+  const [loading, setLoading] = useState(false);
+  const [cocktail, setCocktail] = useState(null);
 
-  React.useEffect(() => {
+useEffect(() => {
     setLoading(true)
     async function getCocktail() {
       try {
@@ -73,9 +73,9 @@ export default function SingleCocktail() {
     } = cocktail
     return (
       <section className='section cocktail-section'>
-        <Link to='/' className='btn btn-primary'>
+        {/* <Link to='/' className='btn btn-primary'>
           back home
-        </Link>
+        </Link> */}
         <h2 className='section-title'>{name}</h2>
         <div className='drink'>
           <img src={image} alt={name}></img>
@@ -106,4 +106,6 @@ export default function SingleCocktail() {
       </section>
     )
   }
-}
+} 
+
+export default SingleCocktail;

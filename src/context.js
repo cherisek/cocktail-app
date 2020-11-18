@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useCallback } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 const AppContext = React.createContext();
@@ -7,7 +6,16 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('a');
-  const [cocktails, setCocktails] = useState([]);
+  const [cocktails, setCocktails] = useState([]); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cocktailsPerPage] = useState(6); 
+
+//get current cocktail
+  const indexOfLastCocktail = currentPage * cocktailsPerPage; 
+  const indexOfFirstCocktail = indexOfLastCocktail - cocktailsPerPage; 
+  const currentCocktail = cocktails.slice(indexOfFirstCocktail, indexOfLastCocktail);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   const fetchDrinks = useCallback( async () => {
     setLoading(true)
@@ -49,7 +57,7 @@ const AppProvider = ({ children }) => {
   }, [searchTerm,fetchDrinks])
   return (
     <AppContext.Provider
-      value={{ loading, cocktails, searchTerm, setSearchTerm }}
+      value={{ loading, cocktails, currentCocktail, cocktailsPerPage, paginate, searchTerm, setSearchTerm }}
     >
       {children}
     </AppContext.Provider>
