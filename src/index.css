@@ -152,6 +152,15 @@ img {
   max-width: var(--fullWidth);
 }
 
+ .nav-title {
+  font-family: "Libre Baskerville", Georgia,serif;
+  font-style: italic;
+  font-weight: 100;
+  text-transform: capitalize;
+  letter-spacing: 2px;
+  margin: 0 auto;
+} 
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -162,7 +171,7 @@ img {
   display: inline-block;
   font-weight: bold;
   margin-right: 0.5rem;
-  font-weight: 400;
+  font-weight: 100;
   letter-spacing: 2px;
   font-size: 1rem;
   padding: 0.25rem 0.5rem;
@@ -222,7 +231,7 @@ img {
 
 .cocktails-center {
   width: var(--smallWidth);
-  margin: 0 auto;
+  margin: 2rem auto;
   max-width: var(--fullWidth);
   display: grid;
   row-gap: 2rem;
@@ -233,14 +242,28 @@ img {
 /* pagiantion */ 
 .pagination {
   display: flex;
-    width: 30%;
-    justify-content: space-between;
-    margin: 0 auto;
+  width: 30%;
+  justify-content: space-between;
+  margin: 0 auto;
+} 
+
+.page-link:hover {
+  color: var(--primaryColor);
 }
 
 @media screen and (min-width: 576px) {
   .cocktails-center {
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .nav-title {
+    font-size: small;
+  }
+
+  .nav-links a {
+    font-size: 0.5rem;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { Link } from 'react-router-dom'; 
-import logo from '../logo.svg'; 
+import logo from '../logo.png'; 
 
 const Navbar = () => {
   return (
@@ -8,8 +8,8 @@ const Navbar = () => {
       <div className='nav-center'>
         <Link to='/'>
           <img src={logo} alt='cocktail logo' className='logo' />
-          {/* <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> */}
         </Link>
+        <h1 className='nav-title'>cocktails with love</h1> 
         <ul className='nav-links'> 
           <li>
             <Link to='/'>home</Link>
