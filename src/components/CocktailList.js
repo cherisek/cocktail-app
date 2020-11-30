@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cocktail from './Cocktail';
 import Loading from './Loading';
 import Pagination from './Pagination';
-import { useGlobalContext } from '../context';
 
-const CocktailList = () => {
-  const { currentCocktail, cocktailsPerPage, cocktails, loading, paginate } = useGlobalContext();
+const CocktailList = ({loading, cocktails}) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginate = pageNumber => setCurrentPage(pageNumber);  
+  const cocktailsPerPage = 6; 
+
+  const indexOfLastCocktail = currentPage * cocktailsPerPage; 
+  const indexOfFirstCocktail = indexOfLastCocktail - cocktailsPerPage; 
+  const currentCocktail = cocktails.slice(indexOfFirstCocktail, indexOfLastCocktail);
+
   if(loading) {
     return <Loading />
   }
-  if(currentCocktail.length < 1) {
+  if(!cocktails.length) {
     return (
       <h2 className='section-title'>
         no cocktails matched your search critera
@@ -20,9 +26,7 @@ const CocktailList = () => {
   return (
     <section className='section'>
       <div className='cocktails-center'>
-        {currentCocktail.map((item) => {
-          return <Cocktail key={item.id} {...item} />
-        })}
+        {currentCocktail.map((item) => <Cocktail key={item.id} {...item} /> )}
       </div>
       <Pagination cocktailsPerPage={cocktailsPerPage} totalCocktails={cocktails.length} paginate={paginate}/> 
     </section>
